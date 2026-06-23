@@ -15,6 +15,11 @@ python3 open_spiel/python/examples/example.py --game_string=breakthrough
 # Play a game against a random or MCTS bot:
 python3 open_spiel/python/examples/mcts.py --game=tic_tac_toe --player1=human --player2=random
 python3 open_spiel/python/examples/mcts.py --game=tic_tac_toe --player1=human --player2=mcts
+
+# Hexapawn (3x3 pawn game) examples:
+python3 open_spiel/python/examples/mcts.py --game=hexapawn --player1=human --player2=random
+python3 open_spiel/python/examples/mcts.py --game=hexapawn --player1=human --player2=mcts
+python3 open_spiel/python/examples/mcts.py --game=hexapawn --player1=mcts --player2=mcts
 ```
 
 ## Concepts

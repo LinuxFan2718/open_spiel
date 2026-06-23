@@ -118,6 +118,8 @@ set(GAME_SOURCES
   hearts/hearts.h
   hex/hex.cc
   hex/hex.h
+  hexapawn/hexapawn.cc
+  hexapawn/hexapawn.h
   hive/hive.cc
   hive/hive.h
   hive/hive_board.cc
@@ -553,6 +555,10 @@ add_test(hearts_test hearts_test)
 add_executable(hex_test hex/hex_test.cc ${OPEN_SPIEL_OBJECTS}
                $<TARGET_OBJECTS:tests>)
 add_test(hex_test hex_test)
+
+add_executable(hexapawn_test hexapawn/hexapawn_test.cc ${OPEN_SPIEL_OBJECTS}
+               $<TARGET_OBJECTS:tests>)
+add_test(hexapawn_test hexapawn_test)
 
 add_executable(hive_test hive/hive_test.cc ${OPEN_SPIEL_OBJECTS}
                $<TARGET_OBJECTS:tests>)

@@ -19,7 +19,9 @@ flags.DEFINE_string(
     "/home/denniscahillane/open_spiel/open_spiel/games/word_tile/data/enable.txt",
     "Dictionary file",
 )
-flags.DEFINE_integer("seed", 0, "Random seed")
+flags.DEFINE_integer(
+    "seed", -1, "Random seed, -1 = random (omit for random tiles each game)"
+)
 
 
 def get_human_action(game, state):
@@ -94,7 +96,12 @@ def get_random_action(state, seed):
 
 
 def main(argv):
-    random.seed(FLAGS.seed)
+    if FLAGS.seed >= 0:
+        seed = FLAGS.seed
+    else:
+        seed = random.randrange(1 << 30)
+        print(f"Random seed: {seed}", file=sys.stderr)
+    random.seed(seed)
     game = pyspiel.load_game("word_tile", {"dictionary_file": FLAGS.dictionary})
     state = game.new_initial_state()
     # Deal initial tiles
@@ -123,7 +130,7 @@ def main(argv):
         if ptype == "human":
             action_struct = get_human_action(game, state)
         else:
-            action_struct = get_random_action(state, move_num + FLAGS.seed)
+            action_struct = get_random_action(state, move_num + seed)
             print(f"Random bot plays: {action_struct.to_json()}")
             # Validate just in case
             st = state.validate_action_struct(action_struct)

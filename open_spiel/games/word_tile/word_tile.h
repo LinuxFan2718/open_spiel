@@ -134,6 +134,10 @@ class WordTileState : public State {
   void RemoveTilesFromRack(Player p, const std::string& needed);
   void AddTilesToRack(Player p, const std::string& tiles);
   void AddTilesToBag(const std::string& tiles);
+  // Returns empty string if valid, otherwise error message
+  std::string ValidatePlaceAction(const WordTileActionStruct& a, Player player) const;
+  // Finalize scores at game end: subtract remaining rack tiles, add opponent rack to finisher if someone went out
+  void FinalizeScores();
 
   std::shared_ptr<const WordTileGame> game_;
   int board_size_ = kDefaultBoardSize;
@@ -156,6 +160,13 @@ class WordTileState : public State {
   WordTileActionStruct pending_action_;
   Player pending_player_ = kInvalidPlayer;
   int pending_score_ = 0;
+  // Chance node state for dealing/drawing tiles
+  int initial_deal_count_ = 0;  // 0..14, first 7 to player 0, next 7 to player 1
+  Player draw_player_ = kInvalidPlayer;
+  int tiles_to_draw_ = 0;
+  // Track blank tile assignments for tiles currently on board (for scoring and undo)
+  // Store as map from (row,col) -> assigned letter, only for blanks
+  absl::flat_hash_map<int, char> blank_assignments_board_;  // key = row*board_size + col
   // For undo simplistic we may store full state snapshot history via Clone mechanism already in base State history, so Undo can rely on full state restore via external mechanism? We'll implement simplified Undo that errors for now and rely on Clone for tree search.
 };
 

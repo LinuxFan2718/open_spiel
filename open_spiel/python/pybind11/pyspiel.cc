@@ -55,6 +55,7 @@
 #include "open_spiel/python/pybind11/games_crazyhouse.h"
 #include "open_spiel/python/pybind11/games_crossword.h"
 #include "open_spiel/python/pybind11/games_dots_and_boxes.h"
+#include "open_spiel/python/pybind11/games_word_tile.h"
 #include "open_spiel/python/pybind11/games_euchre.h"
 #include "open_spiel/python/pybind11/games_gin_rummy.h"
 #include "open_spiel/python/pybind11/games_go.h"
@@ -855,6 +856,7 @@ PYBIND11_MODULE(pyspiel, m) {
   init_pyspiel_games_chess(m);
   init_pyspiel_games_crazyhouse(m);
   init_pyspiel_games_crossword(m);
+  init_pyspiel_games_word_tile(m);
   init_pyspiel_games_colored_trails(m);
   init_pyspiel_games_connect_four(m);
   init_pyspiel_games_crazy_eights(m);

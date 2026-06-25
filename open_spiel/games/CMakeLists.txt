@@ -238,12 +238,6 @@ set(GAME_SOURCES
   twixt/twixtcell.h
   ultimate_tic_tac_toe/ultimate_tic_tac_toe.h
   ultimate_tic_tac_toe/ultimate_tic_tac_toe.cc
-  word_tile/word_tile.cc
-  word_tile/word_tile.h
-  word_tile/board.h
-  word_tile/dictionary.cc
-  word_tile/dictionary.h
-  word_tile/tiles.h
   y/y.cc
   y/y.h
   xiangqi/xiangqi.cc
@@ -760,10 +754,6 @@ add_test(twixt_test twixt_test)
 add_executable(ultimate_tic_tac_toe_test ultimate_tic_tac_toe/ultimate_tic_tac_toe_test.cc
                ${OPEN_SPIEL_OBJECTS} $<TARGET_OBJECTS:tests>)
 add_test(ultimate_tic_tac_toe_test ultimate_tic_tac_toe_test)
-
-add_executable(word_tile_test word_tile/word_tile_test.cc ${OPEN_SPIEL_OBJECTS}
-               $<TARGET_OBJECTS:tests>)
-add_test(word_tile_test word_tile_test)
 
 if (${OPEN_SPIEL_BUILD_WITH_ACPC})
   add_executable(universal_poker_test universal_poker/universal_poker_test.cc ${OPEN_SPIEL_OBJECTS}
